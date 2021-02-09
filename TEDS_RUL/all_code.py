@@ -119,7 +119,6 @@ def all_code():
     predictor = Model(encoder_input,predictions)
 
     predictor.compile(optimizer="adam",loss=[root_mean_squared_error],metrics=['mae','mse'])
-    #print(predictor.summary())
 
     checkpoint_name = 'TEDS_Predictor_RUL.hdf5' 
     checkpoint = ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose = 2, save_best_only = True, mode ='auto')
@@ -161,7 +160,6 @@ def all_code():
     decoder = Model(encoded_input,decoded)
 
     decoder.compile(optimizer="adam",loss=[root_mean_squared_error],metrics=['mae','mse'])
-    #print(decoder.summary())
 
     checkpoint_name = 'TEDS_Decoder_RUL.hdf5' 
     checkpoint = ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose = 2, save_best_only = True, mode ='auto')
@@ -222,7 +220,6 @@ def all_code():
     forecast = Dropout(0.7)(forecast)
     predictions = LSTM(14, return_sequences=True, activation='linear')(forecast)#Relu and selu
     forecaster = Model(forecast_input,predictions)
-    forecaster.summary()
     forecaster.compile(optimizer="adam", loss=[root_mean_squared_error],metrics=['mae','mse'])
 
     checkpoint_name = 'weights/TEDS_Forecaster_RUL.hdf5'
@@ -310,7 +307,6 @@ def all_code():
     xyz7_model = Model([forecast_input, rul_input],predictions)
     opt = keras.optimizers.Adam(lr=0.001)
     xyz7_model.compile(optimizer=opt, loss=[root_mean_squared_error],metrics=['mae','mse'])
-    xyz7_model.summary()
 
     checkpoint_name = 'weights/TEDS_XYZ7_RUL.hdf5'
     checkpoint = ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose = 2, save_best_only = True, mode ='auto')
