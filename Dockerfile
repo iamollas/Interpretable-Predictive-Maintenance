@@ -32,7 +32,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ADD TEDS_RUL/lime_tabular.py /usr/local/lib/python3.7/site-packages/lime
 
-RUN python3 -m pip install --upgrade notebook
+RUN pip install --no-cache-dir notebook==5.*
 
 # Make sure the contents of our repo are in ${HOME}
 COPY . ${HOME}
