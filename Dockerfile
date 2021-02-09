@@ -22,5 +22,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 ADD TEDS_RUL/lime_tabular.py /usr/local/lib/python3.7/site-packages/lime
 
 RUN python3 -m pip install --upgrade notebook
-
-CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
